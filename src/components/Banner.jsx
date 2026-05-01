@@ -86,7 +86,7 @@ const Banner = () => {
         </div>
 
         {/* Floating Card */}
-        <div className="pointer-events-none absolute bottom-10 right-10 hidden lg:flex items-center gap-3 rounded-2xl border bg-white/90 p-4 shadow-lg backdrop-blur">
+        <div className="pointer-events-none absolute bottom-10 right-10 hidden lg:flex items-center gap-3 rounded-2xl border border-gray-500 bg-white/90 p-4 shadow-lg backdrop-blur">
 
           <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-r from-[#4e2ecf] to-[#a57aeb] text-white">
             <RiGraduationCapLine />

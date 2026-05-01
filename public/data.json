@@ -1,0 +1,101 @@
+[
+  {
+    "id": 1,
+    "title": "Complete Web Development Bootcamp",
+    "instructor": "John Doe",
+    "duration": "20 hours",
+    "rating": 4.8,
+    "level": "Beginner",
+    "description": "Learn full-stack web development from scratch.",
+    "image": "https://i.postimg.cc/example-course1.png",
+    "category": "Development"
+  },
+  {
+    "id": 2,
+    "title": "Advanced JavaScript Mastery",
+    "instructor": "Sarah Smith",
+    "duration": "15 hours",
+    "rating": 4.7,
+    "level": "Intermediate",
+    "description": "Deep dive into advanced JavaScript concepts.",
+    "image": "https://i.postimg.cc/example-course2.png",
+    "category": "Development"
+  },
+  {
+    "id": 3,
+    "title": "React & Redux Complete Guide",
+    "instructor": "Michael Brown",
+    "duration": "18 hours",
+    "rating": 4.9,
+    "level": "Intermediate",
+    "description": "Build powerful apps using React and Redux.",
+    "image": "https://i.postimg.cc/example-course3.png",
+    "category": "Development"
+  },
+  {
+    "id": 4,
+    "title": "UI/UX Design Fundamentals",
+    "instructor": "Emily Johnson",
+    "duration": "12 hours",
+    "rating": 4.6,
+    "level": "Beginner",
+    "description": "Learn the basics of user interface and user experience design.",
+    "image": "https://i.postimg.cc/example-course4.png",
+    "category": "Design"
+  },
+  {
+    "id": 5,
+    "title": "Digital Marketing Masterclass",
+    "instructor": "David Wilson",
+    "duration": "10 hours",
+    "rating": 4.5,
+    "level": "Beginner",
+    "description": "Master SEO, social media, and online marketing strategies.",
+    "image": "https://i.postimg.cc/example-course5.png",
+    "category": "Marketing"
+  },
+  {
+    "id": 6,
+    "title": "Python for Data Science",
+    "instructor": "Sophia Lee",
+    "duration": "22 hours",
+    "rating": 4.8,
+    "level": "Beginner",
+    "description": "Learn Python and apply it to data analysis and visualization.",
+    "image": "https://i.postimg.cc/example-course6.png",
+    "category": "Data Science"
+  },
+  {
+    "id": 7,
+    "title": "Node.js & Express API Development",
+    "instructor": "James Anderson",
+    "duration": "14 hours",
+    "rating": 4.7,
+    "level": "Intermediate",
+    "description": "Build RESTful APIs using Node.js and Express.",
+    "image": "https://i.postimg.cc/example-course7.png",
+    "category": "Development"
+  },
+  {
+    "id": 8,
+    "title": "Graphic Design with Photoshop",
+    "instructor": "Olivia Martinez",
+    "duration": "16 hours",
+    "rating": 4.6,
+    "level": "Beginner",
+    "description": "Create stunning graphics using Adobe Photoshop.",
+    "image": "https://i.postimg.cc/example-course8.png",
+    "category": "Design"
+  },
+  {
+    "id": 9,
+    "title": "Machine Learning Basics",
+    "instructor": "William Taylor",
+    "duration": "25 hours",
+    "rating": 4.9,
+    "level": "Advanced",
+    "description": "Understand core machine learning concepts and algorithms.",
+    "image": "https://i.postimg.cc/example-course9.png",
+    "category": "Data Science"
+  }
+]
