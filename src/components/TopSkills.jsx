@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from "next/image";
 import { FaClock } from 'react-icons/fa';
-import { Link } from 'lucide-react';
+
 
 const TopSkills = async () => {
     const res = await fetch('https://skill-sphere-liart-eight.vercel.app/data.json')
@@ -47,7 +47,7 @@ const TopSkills = async () => {
     <p className='font-semibold text-xl mt-1'>{course.title}</p>
     
     <div className='flex items-center justify-between'>
-         <p className='text-gray-500 mt-1 text-sm'>Instructor: {course.instructor}</p>  
+         <p className='text-gray-500 mt-1 text-sm'>Instructor: {course.instructor.name}</p>  
          <p className='flex items-center text-gray-500 gap-1.5 text-sm'><FaClock></FaClock> {course.duration}</p>               
     </div>
        <button className="mt-4 h-10 w-full rounded-md bg-gradient-to-r from-[#4e2ecf] to-[#a57aeb] text-white font-medium hover:scale-105 transition">

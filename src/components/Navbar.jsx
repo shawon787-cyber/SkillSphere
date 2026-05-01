@@ -48,9 +48,9 @@ const Navbar = () => {
 
           <li>
             <Link
-              href="/all-photos"
+              href="/courses"
               className={`px-3 py-1.5 rounded-md transition ${
-                isActive("/all-photos")
+                isActive("/courses")
                   ? "bg-purple-200 text-purple-800"
                   : "hover:text-purple-500"
               }`}
@@ -116,9 +116,9 @@ const Navbar = () => {
 
           <Link
             onClick={() => setOpen(false)}
-            href={"/all-photos"}
+            href={"/courses"}
             className={`block px-3 py-2 rounded-md ${
-              isActive("/all-photos") ? "bg-purple-200 text-purple-800" : "hover:text-purple-500"
+              isActive("/courses") ? "bg-purple-200 text-purple-800" : "hover:text-purple-500"
             }`}
           >
             Courses
