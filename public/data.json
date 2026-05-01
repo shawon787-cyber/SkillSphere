@@ -2,7 +2,14 @@
   {
     "id": 1,
     "title": "Complete Web Development Bootcamp",
-    "instructor": "John Doe",
+    "instructor": {
+      "name": "John Miller",
+      "role": "Senior Web Instructor",
+      "company": "Udemy",
+      "courses": 3,
+      "students": "12k+",
+      "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e"
+    },
     "duration": "20 hours",
     "rating": 4.8,
     "level": "Beginner",
@@ -13,7 +20,14 @@
   {
     "id": 2,
     "title": "Advanced JavaScript Mastery",
-    "instructor": "Sarah Smith",
+    "instructor": {
+      "name": "Robert Smith",
+      "role": "JavaScript Engineer",
+      "company": "Frontend Labs",
+      "courses": 3,
+      "students": "12k+",
+      "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d"
+    },
     "duration": "15 hours",
     "rating": 4.7,
     "level": "Intermediate",
@@ -24,7 +38,14 @@
   {
     "id": 3,
     "title": "React & Redux Complete Guide",
-    "instructor": "Michael Brown",
+    "instructor": {
+      "name": "Michael Johnson",
+      "role": "React Developer",
+      "company": "UI Academy",
+      "courses": 3,
+      "students": "12k+",
+      "image": "https://images.unsplash.com/photo-1527980965255-d3b416303d12"
+    },
     "duration": "18 hours",
     "rating": 4.9,
     "level": "Intermediate",
@@ -35,7 +56,14 @@
   {
     "id": 4,
     "title": "UI/UX Design Fundamentals",
-    "instructor": "Emily Johnson",
+    "instructor": {
+      "name": "Daniel Brown",
+      "role": "Product Designer",
+      "company": "Design Studio",
+      "courses": 3,
+      "students": "12k+",
+      "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d"
+    },
     "duration": "12 hours",
     "rating": 4.6,
     "level": "Beginner",
@@ -46,7 +74,14 @@
   {
     "id": 5,
     "title": "Digital Marketing Masterclass",
-    "instructor": "David Wilson",
+    "instructor": {
+      "name": "David Wilson",
+      "role": "Marketing Strategist",
+      "company": "Growth Hub",
+      "courses": 3,
+      "students": "12k+",
+      "image": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7"
+    },
     "duration": "10 hours",
     "rating": 4.5,
     "level": "Beginner",
@@ -57,7 +92,14 @@
   {
     "id": 6,
     "title": "Python for Data Science",
-    "instructor": "Sophia Lee",
+    "instructor": {
+      "name": "James Lee",
+      "role": "Data Scientist",
+      "company": "AI Labs",
+      "courses": 3,
+      "students": "12k+",
+      "image": "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79"
+    },
     "duration": "22 hours",
     "rating": 4.8,
     "level": "Beginner",
@@ -68,7 +110,14 @@
   {
     "id": 7,
     "title": "Node.js & Express API Development",
-    "instructor": "James Anderson",
+    "instructor": {
+      "name": "James Anderson",
+      "role": "Backend Engineer",
+      "company": "ServerStack",
+      "courses": 3,
+      "students": "12k+",
+      "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8"
+    },
     "duration": "14 hours",
     "rating": 4.7,
     "level": "Intermediate",
@@ -79,7 +128,14 @@
   {
     "id": 8,
     "title": "Graphic Design with Photoshop",
-    "instructor": "Olivia Martinez",
+    "instructor": {
+      "name": "Thomas Martinez",
+      "role": "Graphic Designer",
+      "company": "Creative Studio",
+      "courses": 3,
+      "students": "12k+",
+      "image": "https://images.unsplash.com/photo-1511367461989-f85a21fda167"
+    },
     "duration": "16 hours",
     "rating": 4.6,
     "level": "Beginner",
@@ -90,7 +146,14 @@
   {
     "id": 9,
     "title": "Machine Learning Basics",
-    "instructor": "William Taylor",
+    "instructor": {
+      "name": "William Taylor",
+      "role": "ML Engineer",
+      "company": "DeepMind Academy",
+      "courses": 3,
+      "students": "12k+",
+      "image": "https://images.unsplash.com/photo-1526378722484-bd91ca387e72"
+    },
     "duration": "25 hours",
     "rating": 4.9,
     "level": "Advanced",
