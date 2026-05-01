@@ -6,7 +6,7 @@ import { FaClock } from 'react-icons/fa';
 const TopSkills = async () => {
     const res = await fetch('https://skill-sphere-liart-eight.vercel.app/data.json')
     const skills = await res.json()
-    console.log(skills)
+    // console.log(skills)
     
     return (
         <div className='container mx-auto px-4 mt-16 md:mt-20'>

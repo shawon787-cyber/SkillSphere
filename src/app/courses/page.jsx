@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Search } from "lucide-react";
+import Link from "next/link";
 
 const categories = ["All", "Development", "Design", "Marketing", "Data Science"];
 
@@ -140,9 +141,12 @@ const CoursesPage = () => {
                   <span>👨‍🎓 {course.instructor.students}</span>
                 </div>
 
-              <button className="w-full h-10 rounded-md bg-gradient-to-r from-[#4e2ecf] to-[#a57aeb] text-white font-medium hover:scale-105 transition mt-2">
-                Explore courses →
+              
+              <Link href={`/courses/${course.id}`}>
+              <button className="w-full h-10 rounded-md bg-gradient-to-r from-[#4e2ecf] to-[#a57aeb] text-white font-medium hover:scale-105 transition mt-2 cursor-pointer">
+                View Details
               </button>
+              </Link>
             
                
 
