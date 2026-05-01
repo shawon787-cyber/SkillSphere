@@ -5,7 +5,7 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: 'i.postimg.cc'
+        hostname: 'images.unsplash.com'
       }
     ]
   }
