@@ -1,149 +1,80 @@
+
 "use client";
 
 import { authClient } from "@/lib/auth-client";
-import { Check } from "@gravity-ui/icons";
-import {
-  Card,
- 
-} from "@heroui/react";
-import { GrGoogle } from "react-icons/gr";
 
 export default function SignInPage() {
+
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
+    const formData = new FormData(e.target);
 
-    
     const email = formData.get("email");
     const password = formData.get("password");
 
     const { data, error } = await authClient.signIn.email({
-     
       email,
       password,
-     callbackURL: '/'
-    })
-    console.log({data, error})
+    });
+
+    console.log("LOGIN:", { data, error });
+
+    if (data?.user) {
+      window.location.href = "/";
+    } else {
+      alert(error?.message || "Login failed");
+    }
   };
-  const handleGoogleSignIn = async ()=>{
-      await authClient.signIn.social({
-        provider: 'google'
-      })
-  }
+
+  const handleGoogleSignIn = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/",
+    });
+  };
+
   return (
-    // <Card className="border mx-auto w-96 py-10 mt-5">
-    //   <h1 className="text-center text-2xl font-bold">Sign In</h1>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-[#4e2ecf] via-[#a57aeb] to-[#f3e7d3]">
 
-    //   {/* ✅ Native form ব্যবহার */}
-    //   <form
-    //     onSubmit={onSubmit}
-    //     className="flex w-full flex-col gap-4 px-6"
-    //   >
-       
+      <div className="w-96 p-6 bg-white rounded-xl shadow space-y-4">
 
-        
+        <h1 className="text-xl font-bold text-center">Sign In</h1>
 
-    //     <TextField isRequired>
-    //       <Label>Email</Label>
-    //       <Input name="email" type="email" placeholder="john@example.com" />
-    //       <FieldError />
-    //     </TextField>
+        <form onSubmit={onSubmit} className="space-y-4">
 
-    //     <TextField isRequired>
-    //       <Label>Password</Label>
-    //       <Input
-    //         name="password"
-    //         type="password"
-    //         placeholder="Enter your password"
-    //       />
-    //       <Description>
-    //         Must be at least 8 characters with 1 uppercase and 1 number
-    //       </Description>
-    //       <FieldError />
-    //     </TextField>
+          <input
+            name="email"
+            type="email"
+            placeholder="Email"
+            className="input input-bordered w-full"
+            required
+          />
 
-    //     <div className="flex gap-2">
-    //       <Button type="submit">
-    //         <Check />
-    //         Submit
-    //       </Button>
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            className="input input-bordered w-full"
+            required
+          />
 
-    //       <Button type="reset" variant="secondary">
-    //         Reset
-    //       </Button>
-    //     </div>
-    //   </form>
-    // </Card>
-    <Card className="mx-auto w-96 mt-10 shadow-xl bg-base-100">
-  <div className="card-body">
-    <h1 className="text-2xl font-bold text-center">Sign In</h1>
+          <button className="btn w-full bg-gradient-to-r from-[#4e2ecf] to-[#a57aeb] text-white">
+            Sign In
+          </button>
 
-    <form onSubmit={onSubmit} className="flex flex-col gap-4 mt-4">
-      
-      {/* Email */}
-      <div className="form-control w-full">
-        <label className="label">
-          <span className="label-text">Email</span>
-        </label>
-        <input
-          name="email"
-          type="email"
-          placeholder="john@example.com"
-          className="input input-bordered w-full"
-          required
-        />
-      </div>
+        </form>
 
-      {/* Password */}
-      <div className="form-control w-full">
-        <label className="label">
-          <span className="label-text">Password</span>
-        </label>
-        <input
-          name="password"
-          type="password"
-          placeholder="Enter your password"
-          className="input input-bordered w-full"
-          required
-        />
-        <label className="label">
-          <span className="label-text-alt text-gray-500">
-            Must be at least 8 characters with 1 uppercase and 1 number
-          </span>
-        </label>
-      </div>
+        <div className="divider">OR</div>
 
-      {/* Options */}
-      <div className="flex items-center justify-between text-sm">
-        <label className="flex items-center gap-2 cursor-pointer">
-          <input type="checkbox" className="checkbox checkbox-sm" />
-          Remember me
-        </label>
-        <a className="link link-primary">Forgot password?</a>
-      </div>
-
-      {/* Buttons */}
-      <div className="flex flex-col gap-2 mt-2">
-        <button type="submit" className="btn btn-primary w-full">
-          <Check className="h-4 w-4 mr-1" />
-          Sign In
+        <button
+          onClick={handleGoogleSignIn}
+          className="btn w-full"
+        >
+          Sign in with Google
         </button>
 
-        <button type="reset" className="btn btn-outline w-full">
-          Reset
-        </button>
       </div>
-    </form>
-    <p className="text-center">or</p>
-    <button onClick={handleGoogleSignIn} className="btn"><GrGoogle></GrGoogle> Sign In With Google</button>
-
-    {/* Footer */}
-    <p className="text-center text-sm mt-4">
-      Don’t have an account?{" "}
-      <a className="link link-primary">Sign up</a>
-    </p>
-  </div>
-</Card>
+    </div>
   );
 }

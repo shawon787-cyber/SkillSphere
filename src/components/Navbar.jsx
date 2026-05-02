@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -8,24 +9,36 @@ import { RiGraduationCapLine } from "react-icons/ri";
 import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
 
-
 const Navbar = () => {
-  const handleLogout = async () => {
-  await authClient.signOut();
-};
-  const userData = authClient.useSession();
-  const user = userData.data?.user;
-  console.log(user)
+  const { data } = authClient.useSession();
+  const user = data?.user;
+
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
   const isActive = (path) => pathname === path;
 
+
+  const getValidImage = (img) => {
+    if (!img) return "https://i.ibb.co/4pDNDk1/avatar.png";
+    if (typeof img === "string" && img.startsWith("http")) return img;
+    return "https://i.ibb.co/4pDNDk1/avatar.png";
+  };
+
+  const profileImage = getValidImage(user?.image);
+
+  const handleLogout = async () => {
+    await authClient.signOut();
+    window.location.href = "/signin";
+  };
+
   return (
     <div className="bg-white/70 backdrop-blur-md sticky top-0 z-50">
+      
+     
       <nav className="flex justify-between items-center py-4 max-w-7xl mx-auto w-full px-4">
 
-       
+      
         <div className="flex gap-2 items-center">
           <p className="bg-gradient-to-br from-[#4e2ecf] to-[#a57aeb] text-white p-2 rounded-full">
             <RiGraduationCapLine />
@@ -39,17 +52,12 @@ const Navbar = () => {
           </h3>
         </div>
 
-        {/* Desktop Menu */}
+        
         <ul className="hidden md:flex items-center gap-6 text-sm font-medium">
-
           <li>
             <Link
               href="/"
-              className={`px-3 py-1.5 rounded-md transition ${
-                isActive("/")
-                  ? "bg-purple-100 text-purple-800"
-                  : "hover:text-purple-500"
-              }`}
+              className={isActive("/") ? "text-purple-700 font-semibold" : ""}
             >
               Home
             </Link>
@@ -58,11 +66,7 @@ const Navbar = () => {
           <li>
             <Link
               href="/courses"
-              className={`px-3 py-1.5 rounded-md transition ${
-                isActive("/courses")
-                  ? "bg-purple-200 text-purple-800"
-                  : "hover:text-purple-500"
-              }`}
+              className={isActive("/courses") ? "text-purple-700 font-semibold" : ""}
             >
               Courses
             </Link>
@@ -71,157 +75,136 @@ const Navbar = () => {
           <li>
             <Link
               href="/profile"
-              className={`px-3 py-1.5 rounded-md transition ${
-                isActive("/profile")
-                  ? "bg-purple-200 text-purple-800"
-                  : "hover:text-purple-500"
-              }`}
+              className={isActive("/profile") ? "text-purple-700 font-semibold" : ""}
             >
               Profile
             </Link>
           </li>
         </ul>
 
-        {/* Desktop Buttons */}
-        <div>
-          { !user &&
-            <div className="hidden md:flex items-center gap-3 text-sm">
+       
+        <div className="hidden md:flex items-center gap-4">
 
-          <Link
-            href={"/signin"}
-            className="px-5 py-1.5 rounded-md bg-gradient-to-r from-[#4e2ecf] to-[#a57aeb] text-white hover:opacity-90 transition"
-          >
-            Login
-          </Link>
+          {!user && (
+            <>
+              <Link
+                href="/signin"
+                className="px-5 py-1.5 rounded-md bg-gradient-to-r from-[#4e2ecf] to-[#a57aeb] text-white"
+              >
+                Login
+              </Link>
 
-          <Link
-            href={"/signup"}
-            className="px-5 py-1.5 rounded-md border border-[#664ada] text-[#664ada] hover:bg-gradient-to-r hover:from-[#664ada] hover:to-[#a571f7] hover:text-white transition"
-          >
-            Get Started
-          </Link>
-        </div>
-          }
-          <div className="hidden md:block">
-            {
-            user && 
-              <div className="flex items-center gap-4">
-                <div className="avatar flex items-center gap-4 shadow p-2 pr-4 rounded-full w-fit">
-                  <div className="relative w-8 h-8 rounded-full ring-2 ring-primary ring-offset-2 ring-offset-base-100 overflow-hidden">
-                      <Image
-                        src={user.image}
-                        alt="profile"
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  <p className="text-xl font-medium">{user.name}</p>
+              <Link
+                href="/signup"
+                className="px-5 py-1.5 rounded-md border border-[#664ada] text-[#664ada]"
+              >
+                Register
+              </Link>
+            </>
+          )}
+
+          {user && (
+            <>
+              <div className="flex items-center gap-2">
+                <div className="relative w-8 h-8 rounded-full overflow-hidden">
+                  <Image
+                    src={profileImage}
+                    alt="profile"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-                <button
-                    onClick={async () => {
-                      await authClient.signOut();
-                      setOpen(false);
-                      window.location.href = "/signin";
-                    }}
-                    className="text-center px-6 py-2 rounded-md bg-gradient-to-r from-[#4e2ecf] to-[#a57aeb] text-white cursor-pointer"
-                  >
-                    Log Out
-                  </button>
+
+                <p className="font-medium">{user.name}</p>
               </div>
-          }
-          </div>
+
+              <button
+                onClick={handleLogout}
+                className="px-5 py-1.5 rounded-md bg-gradient-to-r from-[#4e2ecf] to-[#a57aeb] text-white"
+              >
+                Logout
+              </button>
+            </>
+          )}
         </div>
 
-        {/* Mobile Button */}
-        <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden p-2 border-purple-900 text-purple-900 rounded-md border"
-        >
-          {open ? <X size={20} /> : <Menu size={20} />}
+       
+        <button onClick={() => setOpen(!open)} className="md:hidden">
+          {open ? <X /> : <Menu />}
         </button>
       </nav>
 
-      {/* Mobile Menu */}
+     
       {open && (
-        <div className="md:hidden border-t bg-white px-4 py-3 space-y-3">
+        <div className="md:hidden bg-white border-t px-4 py-4 space-y-3">
 
           <Link
+            href="/"
             onClick={() => setOpen(false)}
-            href={"/"}
-            className={`block px-3 py-2 rounded-md ${
-              isActive("/") ? "bg-purple-200 text-purple-800" : "hover:text-purple-500"
-            }`}
+            className="block"
           >
             Home
           </Link>
 
           <Link
+            href="/courses"
             onClick={() => setOpen(false)}
-            href={"/courses"}
-            className={`block px-3 py-2 rounded-md ${
-              isActive("/courses") ? "bg-purple-200 text-purple-800" : "hover:text-purple-500"
-            }`}
+            className="block"
           >
             Courses
           </Link>
 
           <Link
+            href="/profile"
             onClick={() => setOpen(false)}
-            href={"/profile"}
-            className={`block px-3 py-2 rounded-md ${
-              isActive("/profile") ? "bg-purple-200 text-purple-800" : "hover:text-purple-500"
-            }`}
+            className="block"
           >
             Profile
           </Link>
 
-         <div>
-          { !user && <div className="flex gap-2 pt-2">
+          {!user && (
+            <div className="flex flex-col gap-2 pt-2">
+              <Link
+                href="/signin"
+                onClick={() => setOpen(false)}
+                className="text-center px-4 py-2 rounded-md bg-gradient-to-r from-[#4e2ecf] to-[#a57aeb] text-white"
+              >
+                Login
+              </Link>
 
-            <Link
-              href={"/signin"}
-              onClick={() => setOpen(false)}
-              className="flex-1 text-center px-3 py-2 rounded-md bg-gradient-to-r from-[#4e2ecf] to-[#a57aeb] text-white"
-            >
-              Login
-            </Link>
+              <Link
+                href="/signup"
+                onClick={() => setOpen(false)}
+                className="text-center px-4 py-2 rounded-md border border-[#664ada]"
+              >
+                Register
+              </Link>
+            </div>
+          )}
 
-            <Link
-              href={"/signup"}
-              onClick={() => setOpen(false)}
-              className="flex-1 text-center px-3 py-2 rounded-md border border-[#664ada] text-[#664ada]"
-            >
-              Register
-            </Link>
+          {user && (
+            <div className="flex flex-col gap-3 pt-2">
 
-          </div>}
-          {
-            user && 
-              <div className="flex items-center gap-4">
-                <div className="avatar flex items-center gap-4 shadow p-2 pr-4 rounded-full w-fit">
-                    <div className="relative w-8 h-8 rounded-full ring-2 ring-primary ring-offset-2 ring-offset-base-100 overflow-hidden">
-                      <Image
-                        src={user.image}
-                        alt="profile"
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  <p className="text-xl font-medium">{user.name}</p>
+              <div className="flex items-center gap-2">
+                <div className="relative w-8 h-8 rounded-full overflow-hidden">
+                  <Image
+                    src={profileImage}
+                    alt="profile"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-                  <button
-                    onClick={async () => {
-                      await authClient.signOut();
-                      setOpen(false);
-                      window.location.href = "/signin"; 
-                    }}
-                    className="text-center px-6 py-2 rounded-md bg-gradient-to-r from-[#4e2ecf] to-[#a57aeb] text-white cursor-pointer"
-                  >
-                    Log Out
-                  </button>
+                <p>{user.name}</p>
               </div>
-          }
-         </div>
+
+              <button
+                onClick={handleLogout}
+                className="px-4 py-2 rounded-md bg-gradient-to-r from-[#4e2ecf] to-[#a57aeb] text-white"
+              >
+                Logout
+              </button>
+            </div>
+          )}
 
         </div>
       )}
