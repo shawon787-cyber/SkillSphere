@@ -29,7 +29,14 @@ export default function RootLayout({ children }) {
       <body className="min-h-full flex flex-col">
         <Navbar></Navbar>
         {children}
-         <Toaster position="top-right" />
+         <Toaster
+  position="top-right"
+  toastOptions={{
+    style: {
+      zIndex: 9999,
+    },
+  }}
+/>
         <Footer></Footer>
         </body>
     </html>

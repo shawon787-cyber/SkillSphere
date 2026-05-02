@@ -2,6 +2,7 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
+import toast from "react-hot-toast";
 
 export default function SignInPage() {
 
@@ -21,9 +22,12 @@ export default function SignInPage() {
     console.log("LOGIN:", { data, error });
 
     if (data?.user) {
-      window.location.href = "/";
+      toast.success("Login successful 🎉"); // ✅ success toast
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 1500);
     } else {
-      alert(error?.message || "Login failed");
+      toast.error(error?.message || "Login failed ❌"); // ❌ error toast
     }
   };
 
@@ -36,7 +40,6 @@ export default function SignInPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-[#4e2ecf] via-[#a57aeb] to-[#f3e7d3]">
-
       <div className="w-96 p-6 bg-white rounded-xl shadow space-y-4">
 
         <h1 className="text-xl font-bold text-center">Sign In</h1>
