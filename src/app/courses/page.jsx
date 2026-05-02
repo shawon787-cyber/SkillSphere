@@ -3,10 +3,25 @@
 import { useEffect, useState } from "react";
 import { Search } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "react-hot-toast";
 
 const categories = ["All", "Development", "Design", "Marketing", "Data Science"];
 
 const CoursesPage = () => {
+  const { data: session } = authClient.useSession();
+const router = useRouter();
+
+const handleViewDetails = (id) => {
+  if (session?.user) {
+    router.push(`/courses/${id}`);
+  } else {
+    toast.error("Please sign in first");
+    router.push("/signup");
+  }
+};
+
   const [courses, setCourses] = useState([]);
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
@@ -142,11 +157,11 @@ const CoursesPage = () => {
                 </div>
 
               
-              <Link href={`/courses/${course.id}`}>
-              <button className="w-full h-10 rounded-md bg-gradient-to-r from-[#4e2ecf] to-[#a57aeb] text-white font-medium hover:scale-105 transition mt-2 cursor-pointer">
+              
+              <button onClick={() => handleViewDetails(course.id)} className="w-full h-10 rounded-md bg-gradient-to-r from-[#4e2ecf] to-[#a57aeb] text-white font-medium hover:scale-105 transition mt-2 cursor-pointer">
                 View Details
               </button>
-              </Link>
+             
             
                
 
