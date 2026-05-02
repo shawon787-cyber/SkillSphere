@@ -5,8 +5,15 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { RiGraduationCapLine } from "react-icons/ri";
+import { authClient } from "@/lib/auth-client";
+import Image from "next/image";
+
 
 const Navbar = () => {
+  const { data: session } = authClient.useSession();
+  const userData = authClient.useSession();
+  const user = userData.data?.user;
+  console.log(user)
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
@@ -16,7 +23,7 @@ const Navbar = () => {
     <div className="bg-white/70 backdrop-blur-md sticky top-0 z-50">
       <nav className="flex justify-between items-center py-4 max-w-7xl mx-auto w-full px-4">
 
-        {/* Logo */}
+       
         <div className="flex gap-2 items-center">
           <p className="bg-gradient-to-br from-[#4e2ecf] to-[#a57aeb] text-white p-2 rounded-full">
             <RiGraduationCapLine />
@@ -74,7 +81,9 @@ const Navbar = () => {
         </ul>
 
         {/* Desktop Buttons */}
-        <div className="hidden md:flex items-center gap-3 text-sm">
+        <div>
+          { !user &&
+            <div className="hidden md:flex items-center gap-3 text-sm">
 
           <Link
             href={"/signin"}
@@ -89,6 +98,26 @@ const Navbar = () => {
           >
             Get Started
           </Link>
+        </div>
+          }
+          <div className="hidden md:block">
+            {
+            user && 
+              <div>
+                <div className="avatar flex items-center gap-4 shadow p-2 pr-4 rounded-full w-fit">
+                  <div className="relative w-8 h-8 rounded-full ring-2 ring-primary ring-offset-2 ring-offset-base-100 overflow-hidden">
+                      <Image
+                        src={user.image}
+                        alt="profile"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  <p className="text-xl font-medium">{user.name}</p>
+                </div>
+              </div>
+          }
+          </div>
         </div>
 
         {/* Mobile Button */}
@@ -134,7 +163,8 @@ const Navbar = () => {
             Profile
           </Link>
 
-          <div className="flex gap-2 pt-2">
+         <div>
+          { !user && <div className="flex gap-2 pt-2">
 
             <Link
               href={"/signin"}
@@ -152,7 +182,25 @@ const Navbar = () => {
               Register
             </Link>
 
-          </div>
+          </div>}
+          {
+            user && 
+              <div>
+                <div className="avatar flex items-center gap-4 shadow p-2 pr-4 rounded-full w-fit">
+                    <div className="relative w-8 h-8 rounded-full ring-2 ring-primary ring-offset-2 ring-offset-base-100 overflow-hidden">
+                      <Image
+                        src={user.image}
+                        alt="profile"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  <p className="text-xl font-medium">{user.name}</p>
+                </div>
+              </div>
+          }
+         </div>
+
         </div>
       )}
     </div>
