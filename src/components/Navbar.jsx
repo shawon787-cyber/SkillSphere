@@ -10,7 +10,9 @@ import Image from "next/image";
 
 
 const Navbar = () => {
-  const { data: session } = authClient.useSession();
+  const handleLogout = async () => {
+  await authClient.signOut();
+};
   const userData = authClient.useSession();
   const user = userData.data?.user;
   console.log(user)
@@ -103,7 +105,7 @@ const Navbar = () => {
           <div className="hidden md:block">
             {
             user && 
-              <div>
+              <div className="flex items-center gap-4">
                 <div className="avatar flex items-center gap-4 shadow p-2 pr-4 rounded-full w-fit">
                   <div className="relative w-8 h-8 rounded-full ring-2 ring-primary ring-offset-2 ring-offset-base-100 overflow-hidden">
                       <Image
@@ -115,6 +117,16 @@ const Navbar = () => {
                     </div>
                   <p className="text-xl font-medium">{user.name}</p>
                 </div>
+                <button
+                    onClick={async () => {
+                      await authClient.signOut();
+                      setOpen(false);
+                      window.location.href = "/signin";
+                    }}
+                    className="text-center px-6 py-2 rounded-md bg-gradient-to-r from-[#4e2ecf] to-[#a57aeb] text-white cursor-pointer"
+                  >
+                    Log Out
+                  </button>
               </div>
           }
           </div>
@@ -185,7 +197,7 @@ const Navbar = () => {
           </div>}
           {
             user && 
-              <div>
+              <div className="flex items-center gap-4">
                 <div className="avatar flex items-center gap-4 shadow p-2 pr-4 rounded-full w-fit">
                     <div className="relative w-8 h-8 rounded-full ring-2 ring-primary ring-offset-2 ring-offset-base-100 overflow-hidden">
                       <Image
@@ -197,6 +209,16 @@ const Navbar = () => {
                     </div>
                   <p className="text-xl font-medium">{user.name}</p>
                 </div>
+                  <button
+                    onClick={async () => {
+                      await authClient.signOut();
+                      setOpen(false);
+                      window.location.href = "/signin"; 
+                    }}
+                    className="text-center px-6 py-2 rounded-md bg-gradient-to-r from-[#4e2ecf] to-[#a57aeb] text-white cursor-pointer"
+                  >
+                    Log Out
+                  </button>
               </div>
           }
          </div>
