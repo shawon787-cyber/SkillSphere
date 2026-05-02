@@ -20,7 +20,7 @@ const CourseDetails = async ({params}) => {
       />
 
       <h2 className="text-xl font-semibold mt-4">
-        Name: {course.title}
+        {course.title}
       </h2>
 
       <p className="text-gray-600 mt-2">

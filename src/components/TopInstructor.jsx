@@ -8,7 +8,7 @@ const TopInstructor = async () => {
 
   const tutor = await res.json();
 
-  // ✅ unique instructors (safe + clean)
+  
   const instructors = Array.from(
     new Map(
       tutor.map((course) => [
@@ -20,7 +20,7 @@ const TopInstructor = async () => {
 
   return (
     <div className="container mx-auto px-4 mt-16 md:mt-20">
-      {/* Header */}
+      
       <div className="text-center mb-10">
         <span className="text-[#4e2ecf] text-xs">
           MEET YOUR INSTRUCTOR
@@ -33,7 +33,7 @@ const TopInstructor = async () => {
         </p>
       </div>
 
-      {/* Grid */}
+     
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {instructors.slice(0,4).map((ins, index) => (
           <div

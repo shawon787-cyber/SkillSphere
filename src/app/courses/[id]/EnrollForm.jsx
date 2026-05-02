@@ -49,7 +49,7 @@ const EnrollForm = () => {
 
       <form onSubmit={handleSubmit} className="space-y-4">
 
-        {/* NAME */}
+       
         <div>
           <label className="text-sm">Your Name *</label>
           <input
@@ -62,7 +62,7 @@ const EnrollForm = () => {
           />
         </div>
 
-        {/* EMAIL */}
+        
         <div>
           <label className="text-sm">Email *</label>
           <input
@@ -75,7 +75,7 @@ const EnrollForm = () => {
           />
         </div>
 
-        {/* PHONE */}
+       
         <div>
           <label className="text-sm">Phone *</label>
           <input
@@ -88,7 +88,7 @@ const EnrollForm = () => {
           />
         </div>
 
-        {/* BUTTON */}
+        
         <button
           type="submit"
           className="w-full h-11 rounded-md mt-5 bg-gradient-to-r from-[#4e2ecf] to-[#a57aeb] text-white font-medium hover:scale-105 transition"

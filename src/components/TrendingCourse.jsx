@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from "next/image";
 import { FaClock } from 'react-icons/fa';
+import Link from 'next/link';
 
 const TrendingCourse = async () => {
      const res = await fetch('https://skill-sphere-liart-eight.vercel.app/data.json')
@@ -54,9 +55,11 @@ const TrendingCourse = async () => {
                      <p className='text-gray-500 mt-1 text-sm'>Instructor: {course.instructor.name}</p>  
                      <p className='flex items-center text-gray-500 gap-1.5 text-sm'><FaClock></FaClock> {course.duration}</p>               
                 </div>
-                   <button className="mt-4 h-10 w-full rounded-md bg-gradient-to-r from-[#4e2ecf] to-[#a57aeb] text-white font-medium hover:scale-105 transition">
-                            View Details
-                  </button>
+                   <Link href={`/courses/${course.id}`}>
+              <button className="w-full h-10 rounded-md bg-gradient-to-r from-[#4e2ecf] to-[#a57aeb] text-white font-medium hover:scale-105 transition mt-2 cursor-pointer">
+                View Details
+              </button>
+              </Link>
                         
               </div>
             
