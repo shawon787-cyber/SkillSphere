@@ -106,7 +106,7 @@ const ProfilePage = () => {
               </button>
 
               <button
-                onClick={() => router.push("/")}
+                onClick={() => router.push("/courses")}
                 className="h-10 px-6 rounded-md border border-gray-300 font-medium hover:scale-105 transition"
               >
                 Browse courses
