@@ -16,18 +16,18 @@ export default function SignUpPage() {
     const imageInput = formData.get("image");
 
     
-    const image =
-      imageInput &&
-      typeof imageInput === "string" &&
-      imageInput.startsWith("http")
-        ? imageInput
-        : undefined;
+    // const image =
+    //   imageInput &&
+    //   typeof imageInput === "string" 
+    //   // && imageInput.startsWith("http")
+    //     ? imageInput
+    //     : undefined;
 
     const { data, error } = await authClient.signUp.email({
       name,
       email,
       password,
-      image,
+      imageInput,
       callbackURL: "/", 
     });
 
@@ -58,7 +58,7 @@ export default function SignUpPage() {
         />
 
         <input
-          name="image"
+          name="image" type="url"
           placeholder="Profile Image URL (optional)"
           className="input input-bordered w-full"
         />
