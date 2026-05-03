@@ -14,7 +14,7 @@ const TopSkills = () => {
   const [skills, setSkills] = useState([]);
 
   useEffect(() => {
-    fetch("/data.json")
+    fetch("https://raw.githubusercontent.com/shawon787-cyber/SkillSphere/refs/heads/main/public/data.json")
       .then(res => res.json())
       .then(data => setSkills(data));
   }, []);

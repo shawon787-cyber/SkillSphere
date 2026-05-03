@@ -1,10 +1,12 @@
 import EnrollForm from "./EnrollForm";
-
+import fs from 'fs/promises';
+import path from 'path';
 
 const CourseDetails = async ({params}) => {
     const {id} = await params;
-    const res = await fetch('https://skill-sphere-liart-eight.vercel.app/data.json')
-    const courses = await res.json()
+    const filePath = path.join(process.cwd(), 'public', 'data.json');
+    const data = await fs.readFile(filePath, 'utf8');
+    const courses = JSON.parse(data);
     const course = courses.find(c => c.id == id)
     console.log(course)
     return (

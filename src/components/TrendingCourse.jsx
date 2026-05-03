@@ -14,7 +14,7 @@ const TrendingCourse = () => {
   const router = useRouter();
 
   useEffect(() => {
-    fetch("/data.json")
+    fetch("https://raw.githubusercontent.com/shawon787-cyber/SkillSphere/refs/heads/main/public/data.json")
       .then((res) => res.json())
       .then((data) => setTrending(data));
   }, []);
