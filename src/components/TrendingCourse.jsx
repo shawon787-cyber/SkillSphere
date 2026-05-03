@@ -1,7 +1,118 @@
 
+// "use client";
+
+// import React, { useEffect, useState } from "react";
+// import Image from "next/image";
+// import { FaClock } from "react-icons/fa";
+// import { useRouter } from "next/navigation";
+// import { authClient } from "@/lib/auth-client";
+// import { toast } from "react-hot-toast";
+
+// const TrendingCourse = () => {
+//   const [trending, setTrending] = useState([]);
+//   const { data: session } = authClient.useSession();
+//   const router = useRouter();
+
+//   useEffect(() => {
+//     fetch("https://raw.githubusercontent.com/shawon787-cyber/SkillSphere/refs/heads/main/public/data.json")
+//       .then((res) => res.json())
+//       .then((data) => setTrending(data));
+//   }, []);
+
+//   // const handleViewDetails = (id) => {
+//   //   if (session?.user) {
+//   //     router.push(`/courses/${id}`);
+//   //   } else {
+//   //     toast.error("Please sign in first");
+//   //     router.push("/signup");
+//   //   }
+//   // };
+//   const handleViewDetails = (id) => {
+//   if (session?.user) {
+//     // একটু delay দিলে loading দেখাবে
+//     setTimeout(() => {
+//       router.push(`/courses/${id}`);
+//     }, 200);
+//   } else {
+//     toast.error("Please sign in first");
+//     router.push("/signup");
+//   }
+// };
+
+//   return (
+//     <div className="container mx-auto px-4 mt-16 md:mt-20">
+      
+//       <div className="text-center mb-10">
+//         <span className="text-[#4e2ecf] text-xs">
+//           NEW & TRENDING
+//         </span>
+//         <h3 className="font-bold text-3xl lg:text-5xl md:mb-2">
+//           Trending Courses
+//         </h3>
+//         <p className="text-gray-500 text-sm">
+//           What everyone is learning right now.
+//         </p>
+//       </div>
+
+//       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+//         {[...trending].slice(0, 3).map((course) => (
+//           <div key={course.id} className="bg-slate-50 rounded-lg shadow">
+
+//             <div className="relative w-full h-[250px] overflow-hidden rounded-t-lg">
+//               <Image
+//                 src={course.image}
+//                 alt={course.title}
+//                 fill
+//                 className="object-cover"
+//               />
+
+//               <p className="absolute top-5 left-5 bg-white text-black font-medium text-xs px-2 py-1 rounded z-10">
+//                 {course.category}
+//               </p>
+//             </div>
+
+//             <div className="p-6 pb-6">
+//               <div className="flex items-center gap-2">
+//                 <p className="font-medium text-sm">⭐ {course.rating}</p>
+//                 <p className="font-medium text-gray-500">
+//                   {course.level}
+//                 </p>
+//               </div>
+
+//               <p className="font-semibold text-xl mt-1">
+//                 {course.title}
+//               </p>
+
+//               <div className="flex items-center justify-between">
+//                 <p className="text-gray-500 mt-1 text-sm">
+//                   Instructor: {course.instructor.name}
+//                 </p>
+//                 <p className="flex items-center text-gray-500 gap-1.5 text-sm">
+//                   <FaClock /> {course.duration}
+//                 </p>
+//               </div>
+
+//               {/* 🔐 Protected Button */}
+//               <button
+//                 onClick={() => handleViewDetails(course.id)}
+//                 className="w-full h-10 rounded-md bg-gradient-to-r from-[#4e2ecf] to-[#a57aeb] text-white font-medium hover:scale-105 transition mt-2 cursor-pointer"
+//               >
+//                 View Details
+//               </button>
+
+//             </div>
+//           </div>
+//         ))}
+//       </div>
+
+//     </div>
+//   );
+// };
+
+// export default TrendingCourse;
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useTransition } from "react";
 import Image from "next/image";
 import { FaClock } from "react-icons/fa";
 import { useRouter } from "next/navigation";
@@ -13,15 +124,24 @@ const TrendingCourse = () => {
   const { data: session } = authClient.useSession();
   const router = useRouter();
 
+  const [isPending, startTransition] = useTransition();
+  const [activeId, setActiveId] = useState(null);
+
   useEffect(() => {
-    fetch("https://raw.githubusercontent.com/shawon787-cyber/SkillSphere/refs/heads/main/public/data.json")
+    fetch(
+      "https://raw.githubusercontent.com/shawon787-cyber/SkillSphere/refs/heads/main/public/data.json"
+    )
       .then((res) => res.json())
       .then((data) => setTrending(data));
   }, []);
 
   const handleViewDetails = (id) => {
     if (session?.user) {
-      router.push(`/courses/${id}`);
+      setActiveId(id);
+
+      startTransition(() => {
+        router.push(`/courses/${id}`);
+      });
     } else {
       toast.error("Please sign in first");
       router.push("/signup");
@@ -30,11 +150,9 @@ const TrendingCourse = () => {
 
   return (
     <div className="container mx-auto px-4 mt-16 md:mt-20">
-      
+
       <div className="text-center mb-10">
-        <span className="text-[#4e2ecf] text-xs">
-          NEW & TRENDING
-        </span>
+        <span className="text-[#4e2ecf] text-xs">NEW & TRENDING</span>
         <h3 className="font-bold text-3xl lg:text-5xl md:mb-2">
           Trending Courses
         </h3>
@@ -44,8 +162,12 @@ const TrendingCourse = () => {
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
         {[...trending].slice(0, 3).map((course) => (
-          <div key={course.id} className="bg-slate-50 rounded-lg shadow">
+          <div
+            key={course.id}
+            className="bg-slate-50 rounded-lg shadow hover:shadow-lg transition"
+          >
 
             <div className="relative w-full h-[250px] overflow-hidden rounded-t-lg">
               <Image
@@ -55,45 +177,45 @@ const TrendingCourse = () => {
                 className="object-cover"
               />
 
-              <p className="absolute top-5 left-5 bg-white text-black font-medium text-xs px-2 py-1 rounded z-10">
+              <p className="absolute top-5 left-5 bg-white text-black text-xs px-2 py-1 rounded z-10">
                 {course.category}
               </p>
             </div>
 
-            <div className="p-6 pb-6">
-              <div className="flex items-center gap-2">
-                <p className="font-medium text-sm">⭐ {course.rating}</p>
-                <p className="font-medium text-gray-500">
-                  {course.level}
-                </p>
+            <div className="p-6">
+
+              <div className="flex items-center gap-2 text-sm">
+                <span>⭐ {course.rating}</span>
+                <span className="text-gray-500">{course.level}</span>
               </div>
 
-              <p className="font-semibold text-xl mt-1">
+              <h3 className="font-semibold text-lg mt-1">
                 {course.title}
-              </p>
+              </h3>
 
-              <div className="flex items-center justify-between">
-                <p className="text-gray-500 mt-1 text-sm">
-                  Instructor: {course.instructor.name}
-                </p>
-                <p className="flex items-center text-gray-500 gap-1.5 text-sm">
+              <div className="flex justify-between text-sm text-gray-500 mt-1">
+                <span>{course.instructor.name}</span>
+                <span className="flex items-center gap-1">
                   <FaClock /> {course.duration}
-                </p>
+                </span>
               </div>
 
-              {/* 🔐 Protected Button */}
               <button
                 onClick={() => handleViewDetails(course.id)}
-                className="w-full h-10 rounded-md bg-gradient-to-r from-[#4e2ecf] to-[#a57aeb] text-white font-medium hover:scale-105 transition mt-2 cursor-pointer"
+                className="w-full h-10 rounded-md bg-gradient-to-r from-[#4e2ecf] to-[#a57aeb] text-white font-medium mt-3 flex items-center justify-center"
               >
-                View Details
+                {isPending && activeId === course.id ? (
+                  <span className="loading loading-spinner loading-sm"></span>
+                ) : (
+                  "View Details"
+                )}
               </button>
 
             </div>
           </div>
         ))}
-      </div>
 
+      </div>
     </div>
   );
 };
