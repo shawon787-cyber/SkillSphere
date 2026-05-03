@@ -9,6 +9,11 @@ const CourseDetails = async ({params}) => {
     const courses = JSON.parse(data);
     const course = courses.find(c => c.id == id)
     console.log(course)
+
+    if (!course) {
+        return <div className="max-w-7xl mx-auto px-4 pt-10">Course not found</div>
+    }
+
     return (
         <div className="max-w-7xl mx-auto px-4 pt-10">
   <div className="grid grid-cols-1 md:grid-cols-2 gap-12">

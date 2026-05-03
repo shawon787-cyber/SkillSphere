@@ -4,6 +4,10 @@ import { mongodbAdapter } from "better-auth/adapters/mongodb";
 
 const uri = process.env.MONGODB_URI;
 
+if (!uri) {
+  throw new Error("MONGODB_URI environment variable is not set");
+}
+
 let client;
 let clientPromise;
 

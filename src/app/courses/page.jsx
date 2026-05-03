@@ -30,7 +30,7 @@ const handleViewDetails = (id) => {
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch(
-        "https://skill-sphere-liart-eight.vercel.app/data.json"
+        "https://raw.githubusercontent.com/shawon787-cyber/SkillSphere/refs/heads/main/public/data.json"
       );
       const data = await res.json();
       setCourses(data);
