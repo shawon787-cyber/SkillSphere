@@ -19,12 +19,6 @@ const Navbar = () => {
   const isActive = (path) => pathname === path;
 
 
-  // const getValidImage = (img) => {
-  //   if (!img) return "https://i.ibb.co/4pDNDk1/avatar.png";
-  //   if (typeof img === "string" && img.startsWith("http")) return img;
-  //   return "https://i.ibb.co/4pDNDk1/avatar.png";
-  // };
-
   const profileImage = user?.image;
 
   const handleLogout = async () => {
@@ -105,22 +99,24 @@ const Navbar = () => {
 
           {user && (
             <>
-              <div className="flex items-center gap-2">
-                <div className="relative w-8 h-8 rounded-full overflow-hidden">
-                  <Image
-                    src={profileImage}
-                    alt="profile"
-                    fill
-                    className="object-cover"
-                  />
+              
+              <Link href="/profile">
+                <div className="flex items-center gap-2 cursor-pointer shadow p-2 rounded-full w-fit pr-4">
+                  <div className="relative w-8 h-8 rounded-full overflow-hidden">
+                    <Image
+                      src={profileImage}
+                      alt="profile"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <p className="font-medium">{user.name}</p>
                 </div>
-
-                <p className="font-medium">{user.name}</p>
-              </div>
+              </Link>
 
               <button
                 onClick={handleLogout}
-                className="px-5 py-1.5 rounded-md bg-gradient-to-r from-[#4e2ecf] to-[#a57aeb] text-white"
+                className="px-8 py-2.5 rounded-md bg-gradient-to-r from-[#4e2ecf] to-[#a57aeb] text-white font-medium cursor-pointer"
               >
                 Logout
               </button>
@@ -183,23 +179,25 @@ const Navbar = () => {
           )}
 
           {user && (
-            <div className="flex flex-col gap-3 pt-2">
+            <div className="flex gap-3 pt-2">
 
-              <div className="flex items-center gap-2">
-                <div className="relative w-8 h-8 rounded-full overflow-hidden">
-                  <Image
-                    src={profileImage}
-                    alt="profile"
-                    fill
-                    className="object-cover"
-                  />
+              <Link href="/profile">
+                <div className="flex items-center gap-2 cursor-pointer shadow p-2 rounded-full w-fit pr-4">
+                  <div className="relative w-8 h-8 rounded-full overflow-hidden">
+                    <Image
+                      src={profileImage}
+                      alt="profile"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <p className="font-medium">{user.name}</p>
                 </div>
-                <p>{user.name}</p>
-              </div>
+              </Link>
 
               <button
                 onClick={handleLogout}
-                className="px-4 py-2 rounded-md bg-gradient-to-r from-[#4e2ecf] to-[#a57aeb] text-white"
+                className="px-8 py-2 rounded-md bg-gradient-to-r from-[#4e2ecf] to-[#a57aeb] text-white font-medium cursor-pointer"
               >
                 Logout
               </button>

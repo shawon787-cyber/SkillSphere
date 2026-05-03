@@ -1,4 +1,4 @@
-import { Toaster } from "react-hot-toast";
+import ToastProvider from "@/components/ToastProvider";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -28,15 +28,9 @@ export default function RootLayout({ children }) {
     >
       <body className="min-h-full flex flex-col">
         <Navbar></Navbar>
+          <ToastProvider />
         {children}
-         <Toaster
-  position="top-right"
-  toastOptions={{
-    style: {
-      zIndex: 9999,
-    },
-  }}
-/>
+        
         <Footer></Footer>
         </body>
     </html>
