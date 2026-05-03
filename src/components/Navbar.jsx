@@ -19,13 +19,13 @@ const Navbar = () => {
   const isActive = (path) => pathname === path;
 
 
-  const getValidImage = (img) => {
-    if (!img) return "https://i.ibb.co/4pDNDk1/avatar.png";
-    if (typeof img === "string" && img.startsWith("http")) return img;
-    return "https://i.ibb.co/4pDNDk1/avatar.png";
-  };
+  // const getValidImage = (img) => {
+  //   if (!img) return "https://i.ibb.co/4pDNDk1/avatar.png";
+  //   if (typeof img === "string" && img.startsWith("http")) return img;
+  //   return "https://i.ibb.co/4pDNDk1/avatar.png";
+  // };
 
-  const profileImage = getValidImage(user?.image);
+  const profileImage = user?.image;
 
   const handleLogout = async () => {
     await authClient.signOut();

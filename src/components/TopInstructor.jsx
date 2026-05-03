@@ -2,7 +2,7 @@ import React from "react";
 
 const TopInstructor = async () => {
   const res = await fetch(
-    "https://skill-sphere-liart-eight.vercel.app/data.json",
+    "https://raw.githubusercontent.com/shawon787-cyber/SkillSphere/refs/heads/main/public/data.json",
     { cache: "no-store" } // optional but safe for Next.js
   );
 
