@@ -12,7 +12,7 @@ const CourseDetails = async ({params}) => {
     console.log(course)
 
     if (!course) {
-        return <div className="max-w-7xl mx-auto px-4 pt-10">Course not found</div>
+        return <div className="container lg:max-w-7xl mx-auto px-4 pt-10">Course not found</div>
     }
 
     const learningTexts = [
@@ -25,8 +25,9 @@ const CourseDetails = async ({params}) => {
 ];
 
     return (
-        <div className="max-w-7xl mx-auto px-4 pt-10">
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="">
+          <div className="container lg:max-w-7xl mx-auto px-4 pt-10">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-12 ">
 
     
     <div>
@@ -75,6 +76,7 @@ const CourseDetails = async ({params}) => {
   </div>
   <Marquee texts={learningTexts} />
 </div>
+        </div>
     );
 };
 
