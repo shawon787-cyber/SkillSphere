@@ -1,6 +1,7 @@
 import EnrollForm from "./EnrollForm";
 import fs from 'fs/promises';
 import path from 'path';
+import Marquee from "@/components/Marquee";
 
 const CourseDetails = async ({params}) => {
     const {id} = await params;
@@ -13,6 +14,15 @@ const CourseDetails = async ({params}) => {
     if (!course) {
         return <div className="max-w-7xl mx-auto px-4 pt-10">Course not found</div>
     }
+
+    const learningTexts = [
+  `🚀 Master ${course.title} step by step`,
+  `💡 Boost your ${course.category} skills`,
+  `🔥 Become confident in ${course.level} level concepts`,
+  `📚 Learn with real-world projects`,
+  `⭐ Rated ${course.rating} by learners`,
+  `⏱ Complete in ${course.duration}`,
+];
 
     return (
         <div className="max-w-7xl mx-auto px-4 pt-10">
@@ -63,6 +73,7 @@ const CourseDetails = async ({params}) => {
     
 
   </div>
+  <Marquee texts={learningTexts} />
 </div>
     );
 };
