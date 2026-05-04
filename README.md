@@ -22,72 +22,140 @@
 
 ## 📌 Overview
 
-**SkillSphere** is a full-featured e-learning platform where users can:
+**SkillSphere** is a modern full-featured e-learning platform where users can:
 
-- 📚 Browse courses  
-- 🔍 Filter & search content  
-- 📄 View detailed course info  
-- 🔐 Enroll securely  
+* 📚 Browse courses
+* 🔍 Search & filter content
+* 📄 View detailed course info
+* 🔐 Enroll securely
 
-Built with performance, UX, and clean architecture in mind.
+Built with performance, scalability, and clean architecture in mind.
 
 ---
 
 ## ✨ Features
 
 ### 🔐 Authentication
-- Email & Google login  
-- Protected routes  
-- Auto redirect for unauthorized users  
+
+* Email & Google login
+* Protected routes
+* Auto redirect for unauthorized users
 
 ### 📚 Course System
-- Dynamic course listing  
-- Category filtering  
-- Smart search system  
+
+* Dynamic course listing
+* Category filtering
+* Smart search functionality
 
 ### 📄 Course Details
-- Server-side rendering (SSR)  
-- Instructor info & metadata  
-- Clean UI layout  
+
+* Server-side rendering (SSR)
+* Instructor information
+* Clean & responsive UI
 
 ### ⚡ User Experience
-- Skeleton loaders (`loading.jsx`)  
-- Toast notifications (`react-hot-toast`)  
-- Smooth animations (`framer-motion`)  
+
+* Skeleton loaders (`loading.jsx`)
+* Toast notifications (`react-hot-toast`)
+* Smooth animations (`framer-motion`)
 
 ### 🔒 Access Control
-- Private routes for logged-in users  
-- Redirect + feedback system  
+
+* Private routes
+* Redirect with feedback system
 
 ---
 
 ## 🧱 Tech Stack
 
 ### 🎨 Frontend
-- ⚡ Next.js 14 (App Router)  
-- ⚛️ React  
-- 🎨 Tailwind CSS  
-- 🎬 Framer Motion  
+
+* ⚡ Next.js 14 (App Router)
+* ⚛️ React 18
+* 🎨 Tailwind CSS
+* 🎬 Framer Motion
 
 ### 🧠 State & UX
-- React Hooks  
-- React Hot Toast  
+
+* React Hooks
+* React Hot Toast
 
 ### 🗄️ Backend / Data
-- Static JSON API (GitHub Hosted)  
-- Node.js (`fs/promises`)  
+
+* Static JSON API
+* Mongodb
 
 ### 🔑 Authentication
-- Custom Auth Client (Email + Social Login)  
+
+* Better Auth
 
 ---
 
-## 🧰 Tools & Utilities
+## 📦 Installation & Setup
 
-- 🖼️ Next.js Image Optimization  
-- 🧭 App Router Navigation  
-- 🔀 Dynamic Routing  
-- ⚙️ Server & Client Component Architecture  
+### 🔧 Clone Repository
+
+```bash
+git clone https://github.com/shawon787-cyber/SkillSphere.git
+cd SkillSphere
+```
+
+### 📥 Install Dependencies
+
+```bash
+npm install
+```
+
+---
+
+## 📦 Required Packages
+
+### 🚀 Core
+
+```bash
+npm install next react react-dom
+```
+
+### 🎨 Tailwind CSS
+
+```bash
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+```
+
+### 🔔 Toast
+
+```bash
+npm install react-hot-toast
+```
+
+### 🎬 Animation
+
+```bash
+npm install framer-motion
+```
+
+```
+
+---
+
+## ▶️ Run Locally
+
+```bash
+npm run dev
+```
+
+Open in browser:
+👉 http://localhost:3000
+
+---
+
+## 🏗️ Build for Production
+
+```bash
+npm run build
+npm start
+```
 
 ---
 
@@ -115,3 +183,51 @@ src/
 │
 ├── lib/
 │   └── auth-client.js
+```
+
+---
+
+## ⚡ Performance & Optimization
+
+* ⚡ Server Components (Next.js App Router)
+* 🖼️ Image Optimization
+* 📦 Code Splitting
+* 🚀 Fast page load
+
+---
+
+## 🔮 Future Improvements
+
+* 💳 Payment Integration (Stripe)
+* 🧑‍🏫 Instructor Dashboard
+* 📊 Analytics Dashboard
+* 🌐 Multi-language support
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!
+
+```bash
+fork → clone → create branch → commit → push → pull request
+```
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 👨‍💻 Author
+
+**Shawon Cyber**
+🔗 GitHub: https://github.com/shawon787-cyber
+
+---
+
+## ⭐ Support
+
+If you like this project, give it a ⭐ on GitHub!
