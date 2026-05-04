@@ -39,15 +39,18 @@ export default function SignUpPage() {
       return;
     }
 
-    
     router.push("/?signup=success");
   };
 
   const handleGoogleSignIn = async () => {
-    await authClient.signIn.social({
-      provider: "google",
-      callbackURL: "/",
-    });
+    try {
+      await authClient.signIn.social({
+        provider: "google",
+        callbackURL: `${window.location.origin}/?signup=success`,
+      });
+    } catch (err) {
+      toast.error("Google signup failed ❌");
+    }
   };
 
   return (

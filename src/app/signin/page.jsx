@@ -1,4 +1,3 @@
-
 "use client";
 
 import { authClient } from "@/lib/auth-client";
@@ -24,21 +23,26 @@ export default function SignInPage() {
     console.log("LOGIN:", { data, error });
 
     if (data?.user) {
-     
+      toast.success("Sign in successful 🎉"); 
       router.push("/?login=success");
     } else {
-      
       toast.error(
         error?.message || "Invalid email or password ❌"
       );
     }
+    console.log("LOGIN:", data?.user);
   };
 
+  
   const handleGoogleSignIn = async () => {
-    await authClient.signIn.social({
-      provider: "google",
-      callbackURL: "/",
-    });
+    try {
+      await authClient.signIn.social({
+        provider: "google",
+        callbackURL: `${window.location.origin}/?login=success`,
+      });
+    } catch (err) {
+      toast.error("Google login failed ❌");
+    }
   };
 
   return (
