@@ -5,11 +5,14 @@ import TopInstructor from "@/components/TopInstructor";
 import TopSkills from "@/components/TopSkills";
 import TrendingCourse from "@/components/TrendingCourse";
 import LoginToastHandler from "@/components/LoginToastHandler";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
     <>
-      <LoginToastHandler />
+      <Suspense fallback={null}>
+        <LoginToastHandler />
+      </Suspense>
       <Banner />
       <TopSkills />
       <Learn />
